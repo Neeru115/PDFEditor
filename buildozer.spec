@@ -10,8 +10,8 @@ package.name = pdfeditor
 package.domain = org.example
 
 # (str) Source code where the main.py live
-source.dir = .
-#icon.filename = %(source.dir)s/data/icon.png
+source.dir  = .
+requirements = requirements.txt#icon.filename = %(source.dir)s/data/icon.png
 
 # (str) Supported orientation (landscape, portrait or all)
 orientation = portrait
@@ -42,7 +42,6 @@ android.archs = arm64-v8a
 
 # (bool) enables Android auto backup feature (Android API >=23)
 android.allow_backup = True
-
 # (str) The format used to package the app for release mode (aab or apk).
 android.release_artifact = apk
 
