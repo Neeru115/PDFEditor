@@ -52,13 +52,23 @@ jobs:
           export ANDROID_HOME=~/android-sdk
           export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
           
-          # Accept licenses and install components
-          yes | sdkmanager --licenses
-          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+          # Create licenses directory
+          mkdir -p $ANDROID_HOME/licenses
+          echo -e "\n24333f8a63b6825ea9c5514f83c2829b004d1fee" > $ANDROID_HOME/licenses/android-sdk-license
+          echo -e "84831b9409646a918e30573bab4c9c91346d8abd" > $ANDROID_HOME/licenses/android-sdk-preview-license
+          echo -e "d56f5187479451eabf01fb78af6dfcb131a6481e" >> $ANDROID_HOME/licenses/android-sdk-license
+          
+          # Install required components
+          sdkmanager --install "platform-tools"
+          sdkmanager --install "platforms;android-34"
+          sdkmanager --install "build-tools;36.0.0"
+          
+          # Verify installation
+          sdkmanager --list_installed
           
           # Add to PATH for subsequent steps
           echo "ANDROID_HOME=$ANDROID_HOME" >> $GITHUB_ENV
-          echo "PATH=$PATH:$ANDROID_HOME/platform-tools" >> $GITHUB_ENV
+          echo "PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/36.0.0" >> $GITHUB_ENV
 
       - name: Install Python dependencies
         run: |
@@ -79,9 +89,21 @@ jobs:
       - name: Build with Buildozer
         run: |
           export PATH="$PATH:~/.local/bin"
+          
           # Get Java home from installed JDK
           JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
           echo "Using JAVA_HOME: $JAVA_HOME"
+          
+          # Force accept all licenses again (just in case)
+          mkdir -p "$ANDROID_HOME/licenses"
+          echo -e "\n24333f8a63b6825ea9c5514f83c2829b004d1fee" > "$ANDROID_HOME/licenses/android-sdk-license"
+          echo -e "84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+          echo -e "d56f5187479451eabf01fb78af6dfcb131a6481e" >> "$ANDROID_HOME/licenses/android-sdk-license"
+          
+          # Clean previous build
+          buildozer android clean
+          
+          # Build with debug output
           buildozer -v android debug
 
       - name: Upload APK
