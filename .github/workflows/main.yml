@@ -21,7 +21,7 @@ jobs:
           python-version: '3.9'
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -38,7 +38,7 @@ jobs:
         run: |
           mkdir -p ~/android-sdk
           cd ~/android-sdk
-          wget -q https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O cmdline-tools.zip
+          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdline-tools.zip
           unzip -q cmdline-tools.zip
           rm cmdline-tools.zip
           mv cmdline-tools latest
@@ -47,7 +47,7 @@ jobs:
           echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
           echo "PATH=$PATH:$HOME/android-sdk/cmdline-tools/latest/bin:$HOME/android-sdk/platform-tools" >> $GITHUB_ENV
           yes | sdkmanager --licenses
-          sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.0"
+          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
       - name: Install Python dependencies
         run: |
@@ -56,7 +56,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Cache Buildozer dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.buildozer
@@ -69,12 +69,12 @@ jobs:
         run: |
           export PATH="$PATH:~/.local/bin"
           # Get Java home from installed JDK
-          JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac)))
+          JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
           echo "Using JAVA_HOME: $JAVA_HOME"
           buildozer -v android debug
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: PDFEditor-debug-apk
           path: bin/*.apk
