@@ -54,6 +54,9 @@ android.allow_backup = True
 # (str) The format used to package the app for release mode (aab or apk).
 android.release_artifact = apk
 
+# (int) Override build timeout in seconds (default is 0 to use default timeout)
+build_timeout = 3600
+
 [buildozer]
 
 # (int) Log level (0 = error only, 1 = info, 2 = debug (with command output))
