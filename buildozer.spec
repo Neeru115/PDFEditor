@@ -28,10 +28,13 @@ fullscreen = 0
 android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
 
 # (int) Target Android API, should be as high as possible.
-android.api = 33
+android.api = 34
 
 # (int) Minimum API your APK / AAB will support.
 android.minapi = 21
+
+# (str) Android build tools version to use
+android.build_tools_version = 36.0.0
 
 # (str) Android NDK version to use
 android.ndk = 25b
