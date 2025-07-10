@@ -15,8 +15,8 @@ source.dir = .
 # (list) Application requirements
 requirements = python3,kivy==2.2.1,kivymd==1.1.1,python-dateutil,pygments,docutils,Pillow==10.0.0,PyMuPDF==1.23.5,PyPDF2==3.0.1,plyer==2.1.0
 
-# (str) Icon filename
-#icon.filename = %(source.dir)s/data/icon.png
+# (str) Application versioning (major.minor)
+version = 1.0.0
 
 # (str) Supported orientation (landscape, portrait or all)
 orientation = portrait
