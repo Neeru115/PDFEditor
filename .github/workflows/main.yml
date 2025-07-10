@@ -99,9 +99,6 @@ jobs:
           echo -e "84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
           echo -e "d56f5187479451eabf01fb78af6dfcb131a6481e" >> "$ANDROID_HOME/licenses/android-sdk-license"
           
-          # Initialize python-for-android first
-          python -m buildozer -v init
-          
           # Build with debug output
           python -m buildozer -v android debug
 
