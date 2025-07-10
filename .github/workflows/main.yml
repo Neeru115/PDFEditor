@@ -68,7 +68,9 @@ jobs:
       - name: Build with Buildozer
         run: |
           export PATH="$PATH:~/.local/bin"
-          export JAVA_HOME=/usr/lib/jvm/temurin-17-jdk-amd64
+          # Get Java home from installed JDK
+          JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac)))
+          echo "Using JAVA_HOME: $JAVA_HOME"
           buildozer -v android debug
 
       - name: Upload APK
