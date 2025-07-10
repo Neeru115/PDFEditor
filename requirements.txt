@@ -1,24 +1,6 @@
-# Python dependencies for PDFEditor Android App
-# Core Kivy framework
-kivy==2.1.0
+kivy==2.2.1
 kivymd==1.1.1
-
-# Image processing
-# Python dependencies for PDFEditor Android App
-
-# PDF processing libraries (PyMuPDF is faster and more feature-rich than PyPDF2)
 PyMuPDF==1.23.5
 PyPDF2==3.0.1
-
-# Python dependencies for PDFEditor Android App
-
-# Image processing
 Pillow==10.0.0
-
-# Platform-specific utilities for Android
 plyer==2.1.0
-
-# Python dependencies for PDFEditor Android App
-
-# Additional dependencies for Android
-android==1.0.0
