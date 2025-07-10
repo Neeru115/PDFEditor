@@ -34,6 +34,21 @@ jobs:
           build-essential libsqlite3-dev sqlite3 bzip2 libbz2-dev openssl libgdbm-dev \
           libgdbm-compat-dev liblzma-dev libreadline-dev uuid-dev libjpeg-dev libpng-dev
 
+      - name: Install Android SDK
+        run: |
+          mkdir -p ~/android-sdk
+          cd ~/android-sdk
+          wget -q https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O cmdline-tools.zip
+          unzip -q cmdline-tools.zip
+          rm cmdline-tools.zip
+          mv cmdline-tools latest
+          mkdir -p cmdline-tools
+          mv latest cmdline-tools/
+          echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
+          echo "PATH=$PATH:$HOME/android-sdk/cmdline-tools/latest/bin:$HOME/android-sdk/platform-tools" >> $GITHUB_ENV
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.0"
+
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
@@ -53,7 +68,7 @@ jobs:
       - name: Build with Buildozer
         run: |
           export PATH="$PATH:~/.local/bin"
-          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+          export JAVA_HOME=/usr/lib/jvm/temurin-17-jdk-amd64
           buildozer -v android debug
 
       - name: Upload APK
