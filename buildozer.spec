@@ -10,8 +10,13 @@ package.name = pdfeditor
 package.domain = org.example
 
 # (str) Source code where the main.py live
-source.dir  = .
-requirements = requirements.txt#icon.filename = %(source.dir)s/data/icon.png
+source.dir = .
+
+# (list) Application requirements
+requirements = python3,kivy==2.2.1,kivymd==1.1.1,python-dateutil,pygments,docutils,Pillow==10.0.0,PyMuPDF==1.23.5,PyPDF2==3.0.1,plyer==2.1.0
+
+# (str) Icon filename
+#icon.filename = %(source.dir)s/data/icon.png
 
 # (str) Supported orientation (landscape, portrait or all)
 orientation = portrait
@@ -20,7 +25,7 @@ orientation = portrait
 fullscreen = 0
 
 # (list) Permissions
-android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE,MANAGE_EXTERNAL_STORAGE
+android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
 
 # (int) Target Android API, should be as high as possible.
 android.api = 33
@@ -42,6 +47,7 @@ android.archs = arm64-v8a
 
 # (bool) enables Android auto backup feature (Android API >=23)
 android.allow_backup = True
+
 # (str) The format used to package the app for release mode (aab or apk).
 android.release_artifact = apk
 
