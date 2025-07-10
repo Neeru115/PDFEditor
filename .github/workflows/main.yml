@@ -44,16 +44,17 @@ jobs:
           rm cmdline-tools.zip
           
           # Create proper directory structure
+          mv cmdline-tools tmp-tools
           mkdir -p cmdline-tools
-          mv cmdline-tools cmdline-tools/latest
+          mv tmp-tools cmdline-tools/latest
           
           # Set environment variables
           export ANDROID_HOME=~/android-sdk
           export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
           
           # Accept licenses and install components
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
-          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
           
           # Add to PATH for subsequent steps
           echo "ANDROID_HOME=$ANDROID_HOME" >> $GITHUB_ENV
