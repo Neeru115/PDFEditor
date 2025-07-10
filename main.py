@@ -10,6 +10,7 @@ import sys
 import logging
 from pathlib import Path
 from typing import Optional, List
+from kivy.uix.image import Image  # Add this import
 
 # Additional imports for PDF processing
 import fitz  # PyMuPDF
@@ -17,6 +18,7 @@ import PyPDF2
 from PIL import Image as PILImage
 import io
 import datetime
+
 
 # KivyMD imports
 from kivymd.app import MDApp
