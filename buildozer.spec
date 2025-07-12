@@ -15,7 +15,6 @@ source.dir = .
 # (list) Application requirements
 requirements = python3,kivy==2.2.1,kivymd==1.1.1,python-dateutil,pygments,docutils,Pillow==10.0.0,PyMuPDF==1.23.5,PyPDF2==3.0.1,plyer==2.1.0
 
-# (str) Application versioning (major.minor)
 version = 1.0.0
 
 # (str) Supported orientation (landscape, portrait or all)
@@ -40,7 +39,7 @@ android.build_tools_version = 36.0.0
 android.ndk = 25b
 
 # (str) Android SDK version to use
-android.sdk = 33
+android.sdk = 34
 
 # (bool) Use --private data storage (True) or --dir public storage (False)
 android.private_storage = True
